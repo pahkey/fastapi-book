@@ -46,8 +46,9 @@
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{question.content}</div>
             <div class="d-flex justify-content-end">
-                <div class="badge bg-light text-dark p-2">
-                    {moment(question.create_date).format("YYYY년 MM월 DD일 hh:mm a")}
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div class="mb-2">{ question.user ? question.user.username : ""}</div>
+                    <div>{moment(question.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</div>
                 </div>
             </div>
         </div>
@@ -64,8 +65,9 @@
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;">{answer.content}</div>
             <div class="d-flex justify-content-end">
-                <div class="badge bg-light text-dark p-2">
-                    {moment(answer.create_date).format("YYYY년 MM월 DD일 hh:mm a")}
+                <div class="badge bg-light text-dark p-2 text-start">
+                    <div class="mb-2">{ answer.user ? answer.user.username : ""}</div>
+                    <div>{moment(answer.create_date).format("YYYY년 MM월 DD일 hh:mm a")}</div>
                 </div>
             </div>
         </div>
