@@ -34,4 +34,5 @@
         {/each}
         </tbody>
     </table>
+    <a use:link href="/question-create" class="btn btn-primary">질문 등록하기</a>
 </div>

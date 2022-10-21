@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from starlette import status
 
 from database import get_db
 from domain.question import question_schema, question_crud
@@ -19,3 +20,9 @@ def question_list(db: Session = Depends(get_db)):
 def question_detail(question_id: int, db: Session = Depends(get_db)):
     question = question_crud.get_question(db, question_id=question_id)
     return question
+
+
+@router.post("/create", status_code=status.HTTP_204_NO_CONTENT)
+def question_create(_question_create: question_schema.QuestionCreate,
+                    db: Session = Depends(get_db)):
+    question_crud.create_question(db=db, question_create=_question_create)
