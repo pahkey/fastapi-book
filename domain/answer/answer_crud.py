@@ -31,3 +31,8 @@ def update_answer(db: Session, db_answer: Answer,
 def delete_answer(db: Session, db_answer: Answer):
     db.delete(db_answer)
     db.commit()
+
+
+def vote_answer(db: Session, db_answer: Answer, db_user: User):
+    db_answer.voter.append(db_user)
+    db.commit()
