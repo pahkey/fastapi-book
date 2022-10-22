@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, MetaData
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from starlette.config import Config
@@ -31,3 +32,15 @@ def get_db():
         yield db
     finally:
         db.close()
+
+
+# Async database
+async_engine = create_async_engine("sqlite+aiosqlite:///myapi.db")
+
+
+async def get_async_db():
+    db = AsyncSession(bind=async_engine)
+    try:
+        yield db
+    finally:
+        await db.close()
