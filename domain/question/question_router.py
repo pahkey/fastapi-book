@@ -1,12 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy import select
 from sqlalchemy.orm import Session
 from starlette import status
 
 from database import get_db, get_async_db
 from domain.question import question_schema, question_crud
 from domain.user.user_router import get_current_user
-from models import User, Question
+from models import User
 
 router = APIRouter(
     prefix="/api/question",
@@ -78,9 +77,14 @@ def question_vote(_question_vote: question_schema.QuestionVote,
     question_crud.vote_question(db, db_question=db_question, db_user=current_user)
 
 
+# async examples
 @router.get("/async_list")
 async def async_question_list(db: Session = Depends(get_async_db)):
-    data = await db.execute(select(Question)
-                            .order_by(Question.create_date.desc())
-                            .limit(10))
-    return data.all()
+    result = await question_crud.get_async_question_list(db)
+    return result
+
+
+@router.post("/async_create")
+async def async_question_create(db: Session = Depends(get_async_db)):
+    result = await question_crud.async_create_question(db)
+    return result

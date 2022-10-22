@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from sqlalchemy import select
+
 from domain.question.question_schema import QuestionCreate, QuestionUpdate
 from models import Question, User, Answer
 from sqlalchemy.orm import Session
@@ -57,3 +59,21 @@ def delete_question(db: Session, db_question: Question):
 def vote_question(db: Session, db_question: Question, db_user: User):
     db_question.voter.append(db_user)
     db.commit()
+
+
+# async examples
+async def get_async_question_list(db: Session):
+    data = await db.execute(select(Question)
+                            .order_by(Question.create_date.desc())
+                            .limit(10))
+    return data.all()
+
+
+async def async_create_question(db: Session):
+    db_question = Question(subject='async subject',
+                           content='async content',
+                           create_date=datetime.now())
+    db.add(db_question)
+    await db.commit()
+    await db.refresh(db_question)
+    return db_question
