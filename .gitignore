@@ -5,3 +5,4 @@ __pycache__
 migrations
 alembic.ini
 .env
+logs
