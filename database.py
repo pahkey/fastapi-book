@@ -35,7 +35,8 @@ def get_db():
 
 
 # Async database
-async_engine = create_async_engine("sqlite+aiosqlite:///myapi.db")
+SQLALCHEMY_DATABASE_URL_ASYNC = config('SQLALCHEMY_DATABASE_URL_ASYNC')
+async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL_ASYNC)
 
 
 async def get_async_db():
