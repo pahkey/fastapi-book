@@ -84,7 +84,7 @@ async def async_question_list(db: Session = Depends(get_async_db)):
     return result
 
 
-@router.post("/async_create")
-async def async_question_create(db: Session = Depends(get_async_db)):
-    result = await question_crud.async_create_question(db)
-    return result
+@router.post("/async_create", status_code=status.HTTP_204_NO_CONTENT)
+async def async_question_create(_question_create: question_schema.QuestionCreate,
+                                db: Session = Depends(get_async_db)):
+    await question_crud.async_create_question(db, question_create=_question_create)

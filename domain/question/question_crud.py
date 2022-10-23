@@ -69,11 +69,9 @@ async def get_async_question_list(db: Session):
     return data.all()
 
 
-async def async_create_question(db: Session):
-    db_question = Question(subject='async subject',
-                           content='async content',
+async def async_create_question(db: Session, question_create: QuestionCreate):
+    db_question = Question(subject=question_create.subject,
+                           content=question_create.content,
                            create_date=datetime.now())
     db.add(db_question)
     await db.commit()
-    await db.refresh(db_question)
-    return db_question
