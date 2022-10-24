@@ -10,7 +10,8 @@ from domain.user import user_router
 app = FastAPI()
 
 origins = [
-    "http://127.0.0.1:5173",
+    "http://127.0.0.1:5173",  # Svelte
+    "http://localhost:3000",  # React
 ]
 
 app.add_middleware(
