@@ -6,3 +6,4 @@ migrations
 alembic.ini
 .env
 logs
+.deta
