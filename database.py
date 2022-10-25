@@ -36,11 +36,11 @@ def get_db():
 
 # Async database
 SQLALCHEMY_DATABASE_URL_ASYNC = config('SQLALCHEMY_DATABASE_URL_ASYNC')
-async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL_ASYNC)
+async_engine = create_async_engine(SQLALCHEMY_DATABASE_URL_ASYNC, echo=False)
 
 
 async def get_async_db():
-    db = AsyncSession(bind=async_engine)
+    db = AsyncSession(bind=async_engine, expire_on_commit=False)
     try:
         yield db
     finally:
