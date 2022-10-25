@@ -72,7 +72,7 @@ function Home() {
             {
               isLogin 
                 ? <Link className="btn btn-primary" to="/question-create">질문 등록하기</Link>
-                : <Link className="btn btn-primary" onClick={() => {window.location = '/user-login'}}>질문 등록하기</Link>
+                : <Link className="btn btn-primary disabled" to="/question-create">질문 등록하기</Link>
             }
           </div>
           <div className="col-6">
