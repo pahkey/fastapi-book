@@ -1,7 +1,7 @@
 aiosqlite==0.17.0
 alembic==1.8.1
 anyio==3.6.2
-asyncpg==0.26.0
+asyncpg
 bcrypt==4.0.1
 cffi==1.15.1
 click==8.1.3
