@@ -26,9 +26,9 @@ app.add_middleware(
 app.include_router(question_router.router)
 app.include_router(answer_router.router)
 app.include_router(user_router.router)
-app.mount("/static", StaticFiles(directory="react_fronend/build/static"))
+app.mount("/static", StaticFiles(directory="react_frontend/build/static"))
 
 
 @app.get("/")
 def index():
-    return FileResponse("react_fronend/build/index.html")
+    return FileResponse("react_frontend/build/index.html")
