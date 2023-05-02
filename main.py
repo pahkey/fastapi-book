@@ -12,6 +12,7 @@ app = FastAPI()
 origins = [
     "http://127.0.0.1:5173",  # Svelte
     "http://localhost:3000",  # React
+    "http://localhost:8000",  # React
 ]
 
 app.add_middleware(
